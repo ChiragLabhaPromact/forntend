@@ -1,0 +1,48 @@
+<div class="main-div">
+    <div class="registration-form">
+        <form [formGroup]="registerForm" (ngSubmit)="registration(registerForm.value)">
+            <h2>Registration</h2>
+            <div class="content">
+                <div class="input-field">
+                    <input type="text" placeholder="Name" name="name" autocomplete="nope" class="form-control"
+                        formControlName="name"
+                        [ngClass]="{ error: getControl('name')?.errors && getControl('name')?.touched }">
+                    <div class="errorContainer">
+                        <span *ngIf="getControl('name')?.errors && getControl('name')?.touched" class="error">Name
+                            is
+                            required.</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="email" name="email" placeholder="Email" autocomplete="nope" formControlName="email"
+                        [ngClass]="{ error: getControl('email')?.errors && getControl('email')?.touched }">
+                    <div class="errorContainer">
+                        <span *ngIf="getControl('email')?.errors && getControl('email')?.touched" class="error">Email
+                            is
+                            required.</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Password" autocomplete="new-password"
+                        formControlName="password"
+                        [ngClass]="{ error: getControl('password')?.errors && getControl('password')?.touched }">
+                    <div class="errorContainer">
+                        <span *ngIf="getControl('password')?.errors && getControl('password')?.touched"
+                            class="error">Password
+                            is required.</span>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; margin: 10px 0;">
+                    <asl-google-signin-button theme="filled_blue" text="signup_with" type="standard" shape='pill'
+                        size='medium'></asl-google-signin-button>
+                </div>
+                <div class="temp-div">
+                </div>
+                <span class="login-link">Already you have an account <a routerLink="/login">Login</a></span>
+            </div>
+            <div class="action">
+                <button [disabled]="registerForm.invalid">Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
